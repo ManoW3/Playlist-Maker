@@ -154,9 +154,10 @@ while(true){
                 cout << "Song: " << curSong[1] << endl;
                 cout << "Length: " << curSong[2] << endl;
                 
-                 break;
+                
                 }
             }
+             break;
         }
 
         case 6: {
