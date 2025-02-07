@@ -120,8 +120,14 @@ while(true){
             if (!found)
                 cout << "Invalid Song" << endl;
             else {
+                string hi;
                 time = convertTime(songLength);
                 cout << "Playing " << songChoice << " for " << time << " seconds..." << endl;
+                cin >> hi;
+                
+                if(hi == "skip"){
+                    continue;
+                }
                 sleep(time);
             }
             break;
