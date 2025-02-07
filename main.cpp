@@ -96,42 +96,40 @@ while(true){
             string songLength;
             getline(cin, songLength);
     
-
     songs.push_back({artistName, songName, songLength});
     
     cout<<"SONG ADDED"<<endl;
     break;
             }
-        case 2:{
-            string songChoice;
-            string songLength;
-            int time;
-            bool found = false;
-
-            cout << "What Song? (Enter full name spelled correctly)" << endl;
-            getline(cin, songChoice);
-            for (vector<string> song : songs) {
-                if (song[1] == songChoice) {
-                    songLength = song[2];
-                    found = true;
-                    break;  // Exit loop once the song is found
-                }
-            }
-            if (!found)
-                cout << "Invalid Song" << endl;
-            else {
-                string hi;
-                time = convertTime(songLength);
-                cout << "Playing " << songChoice << " for " << time << " seconds..." << endl;
-                cin >> hi;
-                
-                if(hi == "skip"){
-                    continue;
-                }
-                sleep(time);
-            }
-            break;
+        case 2: {
+    string songChoice;
+    string songLength;
+    int time;
+    bool found = false;
+    cout << "What Song? (Enter full name spelled correctly)" << endl;
+    getline(cin, songChoice);
+    for (vector<string> song : songs) {
+        if (song[1] == songChoice) {
+            songLength = song[2];
+            found = true;
+            break;  // Exit loop once the song is found
         }
+    }
+    if (!found)
+        cout << "Invalid Song" << endl;
+    else {
+        time = convertTime(songLength);
+        cout << "Playing " << songChoice << " for " << time << " seconds..." << endl;
+
+        for (int i = time; i > 0; --i) {
+            cout << "Time left: " << i << " seconds" << endl;
+            sleep(1); // Sleep for 1 second
+        }
+
+        cout << "Finished playing " << songChoice << endl;
+    }
+    break;
+}
         case 3:{
             shuffle(songs.begin(), songs.end(), default_random_engine{});
             cout << "Songs Shuffled!" << endl;
@@ -146,15 +144,11 @@ while(true){
             }
             break;
         }
-
         case 5:{
-
             cout << "What is the name of the song: ";
             string searchSong;
             getline(cin, searchSong);
-
             for (vector<string> curSong : songs) {
-
             if (curSong[1] == searchSong) {
                  cout << "Artist: " << curSong[0] << endl;
                 cout << "Song: " << curSong[1] << endl;
@@ -165,7 +159,6 @@ while(true){
             }
              break;
         }
-
         case 6: {
             ofstream WriteFile("playlist.txt");
             for (vector<string> song : songs) {
@@ -174,18 +167,14 @@ while(true){
             cout << "File Made" << endl;
             break;
         }
-
         case 7: {
             return 1;
         }
-
         default:{
             cout<<"Oh nah"<<endl;
         }
     }
     }
 
-
     return 0;
 }
-
